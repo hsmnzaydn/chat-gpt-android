@@ -36,7 +36,7 @@ class NetworkModule {
             .addInterceptor { chain ->
                 val request: Request =
                     chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer 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")
+                        .addHeader("Authorization", "Bearer")
                         .build()
 
                 chain.proceed(request)
