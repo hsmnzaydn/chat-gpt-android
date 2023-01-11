@@ -14,16 +14,11 @@ import com.hsmnzaydn.chatgptv2.databinding.FragmentChatBinding
 import com.hsmnzaydn.chatgptv2.ui.adapter.ChatListAdapter
 import com.hsmnzaydn.chatgptv2.ui.chat.action.ChatFragmentAction
 import com.hsmnzaydn.chatgptv2.ui.chat.state.ChatScreenState
-import com.hsmnzaydn.chatgptv2.utils.AdmobUtility
 import com.hsmnzaydn.domain.chatgpt.model.UIMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
-
-    private val admob by lazy {
-        AdmobUtility(requireActivity())
-    }
 
     override val viewModel: ChatViewModel by viewModels()
 
@@ -41,7 +36,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        admob.init()
         initAdapter()
         subscribeMessages()
         sendMessageAreaManagement()
@@ -68,7 +62,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
                     }
                     is ChatScreenState.ShowAdState -> {
                         setAdapterData(it.messages)
-                        admob.show()
                     }
                 }
             }

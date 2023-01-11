@@ -44,4 +44,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-android-compiler:2.42"
     implementation 'androidx.room:room-ktx:2.2.1'
+
+    androidTestImplementation 'androidx.test.ext:truth:1.5.0'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
+    androidTestImplementation 'app.cash.turbine:turbine:0.9.0'
+
+
 }

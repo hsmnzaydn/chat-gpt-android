@@ -47,7 +47,7 @@ class ChatGTPRepositoryImpl @Inject constructor(
                 }
                 messageDAO.insert(MessageEntity(
                     sender = MessageSender.OPPOSITE.name,
-                    message = (response.await() as? NetworkResponse.Success)?.body?.choices?.get(0)?.text.orEmpty()
+                    message = (response.await() as? NetworkResponse.Success)?.body?.choices?.get(0)?.text?:"There is a problem please try again"
                 ))
                 emit(response.await().toDomainState(askResponseMapper))
             }
