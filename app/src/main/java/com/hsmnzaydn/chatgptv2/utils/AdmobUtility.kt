@@ -11,7 +11,7 @@ class AdmobUtility constructor(private val activity: Activity) {
 
      fun init(){
         val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(activity,"ca-app-pub-7491116475843767/3653946610", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(activity,"", adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
