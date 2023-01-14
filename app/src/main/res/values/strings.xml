@@ -2,4 +2,6 @@
     <string name="app_name">My AI Friend</string>
 
     <string name="please_waiting">Please wait, I am thinking</string>
+    <string name="i_am_listen_please_speak">I am listening, please speak</string>
+    <string name="please_type_something_or_click_microphone">Please type something or click microphone</string>
 </resources>

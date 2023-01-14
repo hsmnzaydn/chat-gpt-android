@@ -30,6 +30,7 @@ class ChatViewModel @Inject constructor(
     fun action(action: ChatFragmentAction) {
         when (action) {
             is ChatFragmentAction.SendMessageAction -> sendMessage(action.message)
+            ChatFragmentAction.OpenSpeechToTextAction -> openSpeechToText()
         }
     }
 
@@ -71,6 +72,10 @@ class ChatViewModel @Inject constructor(
 
             }
         }
+    }
+
+    private fun openSpeechToText() {
+        _uiState.value = ChatScreenState.OpenSpeechToTextState
     }
 
     companion object {
