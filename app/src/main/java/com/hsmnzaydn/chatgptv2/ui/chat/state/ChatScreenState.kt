@@ -7,5 +7,7 @@ sealed class ChatScreenState {
     data class WaitingMessageState(val messages: List<UIMessage>) : ChatScreenState()
     data class ShowAdState(val messages: List<UIMessage>) : ChatScreenState()
     object OpenSpeechToTextState : ChatScreenState()
+    object EnableSendMessage : ChatScreenState()
+    object EnableMicrophone : ChatScreenState()
     object LoadingState : ChatScreenState()
 }

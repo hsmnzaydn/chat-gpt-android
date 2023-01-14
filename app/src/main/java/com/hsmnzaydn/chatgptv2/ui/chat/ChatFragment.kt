@@ -20,6 +20,7 @@ import com.hsmnzaydn.chatgptv2.ui.chat.action.ChatFragmentAction
 import com.hsmnzaydn.chatgptv2.ui.chat.state.ChatScreenState
 import com.hsmnzaydn.domain.chatgpt.model.UIMessage
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 import java.util.*
 
 @AndroidEntryPoint
@@ -45,6 +46,11 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
             if (it.resultCode == Activity.RESULT_OK) {
                 val value = it.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).toString()
                 binding.edtMessage.setText(value)
+                try {
+                    binding.edtMessage.setSelection(value.length)
+                } catch (exception: Exception) {
+
+                }
             }
         }
 
@@ -76,6 +82,8 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
                     ChatScreenState.OpenSpeechToTextState -> {
                         openSpeechToText()
                     }
+                    ChatScreenState.EnableMicrophone -> enableMicrophone()
+                    ChatScreenState.EnableSendMessage -> enableSendMessage()
                 }
             }
         }
@@ -85,9 +93,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun sendMessageAreaManagement() {
         binding.edtMessage.addTextChangedListener {
             if (it != null && it.isEmpty()) {
-                enableMicrophone()
+                viewModel.action(ChatFragmentAction.EnableMicrophoneAction)
             } else {
-                enableSendMessage()
+                viewModel.action(ChatFragmentAction.EnableSendMessageAction)
             }
         }
     }
@@ -119,7 +127,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         }
     }
 
-    private fun openSpeechToText(){
+    private fun openSpeechToText() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,

@@ -30,9 +30,13 @@ class ChatViewModel @Inject constructor(
     fun action(action: ChatFragmentAction) {
         when (action) {
             is ChatFragmentAction.SendMessageAction -> sendMessage(action.message)
-            ChatFragmentAction.OpenSpeechToTextAction -> openSpeechToText()
+            ChatFragmentAction.OpenSpeechToTextAction -> openSpeechToTextState()
+            ChatFragmentAction.EnableMicrophoneAction -> enableMicrophone()
+            ChatFragmentAction.EnableSendMessageAction -> enableSendMessage()
         }
     }
+
+
 
     fun getMessages() {
         viewModelScope.launch {
@@ -74,8 +78,16 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    private fun openSpeechToText() {
+    private fun openSpeechToTextState() {
         _uiState.value = ChatScreenState.OpenSpeechToTextState
+    }
+
+    private fun enableSendMessage() {
+        _uiState.value = ChatScreenState.EnableSendMessage
+    }
+
+    private fun enableMicrophone() {
+        _uiState.value = ChatScreenState.EnableMicrophone
     }
 
     companion object {
