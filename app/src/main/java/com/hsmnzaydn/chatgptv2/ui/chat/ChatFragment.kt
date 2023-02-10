@@ -20,6 +20,7 @@ import com.hsmnzaydn.chatgptv2.ui.chat.action.ChatFragmentAction
 import com.hsmnzaydn.chatgptv2.ui.chat.state.ChatScreenState
 import com.hsmnzaydn.domain.chatgpt.model.UIMessage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.util.*
 
@@ -60,6 +61,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         subscribeMessages()
         sendMessageAreaManagement()
         enableMicrophone()
+        viewLifecycleOwner.lifecycleScope.launch {
+
+        }
     }
 
 
