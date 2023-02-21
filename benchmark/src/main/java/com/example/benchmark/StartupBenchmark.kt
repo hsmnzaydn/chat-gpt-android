@@ -25,7 +25,7 @@ import org.junit.runner.RunWith
  * for investigating your app's performance.
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleStartupBenchmark {
+class StartupBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
 
@@ -38,23 +38,5 @@ class ExampleStartupBenchmark {
     ) {
         pressHome()
         startActivityAndWait()
-    }
-
-
-    @Test
-    fun writeAndScroll() = benchmarkRule.measureRepeated(
-        packageName = "com.hsmnzaydn.chatgptv2",
-        metrics = listOf(FrameTimingMetric()),
-        iterations = 5,
-        startupMode = StartupMode.COLD
-    ) {
-        pressHome()
-        startActivityAndWait()
-        device.wait(Until.hasObject(By.text("Please type something or click microphone")),5000)
-        val edt = device.findObject(By.text("Please type something or click microphone"))
-        edt.click()
-        edt.text = "Selam canim"
-
-        device.waitForIdle()
     }
 }
