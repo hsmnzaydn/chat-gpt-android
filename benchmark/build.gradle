@@ -20,8 +20,10 @@ android {
         minSdk 24
         targetSdk 33
 
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         // This benchmark buildType is used for benchmarking, and should function like your
